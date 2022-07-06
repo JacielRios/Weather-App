@@ -37,8 +37,8 @@ async function cityStats(city){
                 <p id="time">${stats.location.localtime}</p>
             </div>
             <div class="main-data">
-                <p>${stats.current.temp_c}</p>
-                <img src="${stats.current.condition.icon}" alt="Condicion">
+                <p>${stats.current.temp_c}°</p>
+                <img id="icon" src="${stats.current.condition.icon}" alt="Condicion">
             </div>
             <div class="data-bottom">
                 <p>Nubosidad: ${stats.current.cloud}%</p>
