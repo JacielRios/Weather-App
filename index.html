@@ -1,28 +1,53 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Weather app</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="./styles/style.css">
 </head>
+
 <body>
-    <header class ="title">
-        <h1>Weather App</h1>
+    <header>
+        <img class="header__cloud" src="./styles/assets/weather-logo.svg" alt="cloud logo">
+        <form class="header__search--container">
+            <input type="text" placeholder="Ingresa una ciudad..." id="city">
+            <span><img src="./styles/assets/search-icon.svg" alt="Buscar" id="search"></span>
+        </form>
+        <button class="coords">
+            <img class="header__gps" src="./styles/assets/gps-icon.svg" alt="Obtener ubicacion">
+        </button>
     </header>
-    <main>
-        <div class="search-city">
-            <form>
-                <label for="city">Ingresa una ciudad</label>
-                <input type="text" id="city">
-                <button type="submit">Buscar</button>
-            </form>
+    <section class="card__main--container">
+        <div class="card__geo"></div>
+        <div class="card__info--container">
+            <div class="card__info--temperature"></div>
+            <div class="card__image--container"></div>
         </div>
-        <div id="content">
-            
+    </section>
+    <section class="infoExtra__container">
+        <div class="infoExtra__data--container">
+            <strong>Más información del clima</strong>
+            <div class="infoExtra__text">
+                <p>Nubosidad</p>
+                <p>Humedad</p>
+                <p>Presión</p>
+                <p>Visibilidad</p>
+                <p>Velocidad del viento</p>
+            </div>
+            <div class="infoExtra__values">
+                <!-- <p>27%</p>
+                <p>33%</p>
+                <p>1009 mbar</p>
+                <p>10 km</p>
+                <p>31 k/h</p> -->
+            </div>
         </div>
-    </main>
+    </section>
+    <script src="./src/nodes.js"></script>
     <script src="./src/main.js"></script>
 </body>
+
 </html>

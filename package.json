@@ -1,0 +1,19 @@
+{
+  "name": "weather-app",
+  "version": "1.0.0",
+  "description": "Aplicacion del clima consumiendo una API REST",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JacielRios/Weather-App.git"
+  },
+  "author": "JACIEL RIOS",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/JacielRios/Weather-App/issues"
+  },
+  "homepage": "https://github.com/JacielRios/Weather-App#readme"
+}

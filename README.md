@@ -1,2 +1,2 @@
 # Weather-App
-Aplicaion del clima consumiendo una API REST
+Aplicacion del clima consumiendo una API REST
