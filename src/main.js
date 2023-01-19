@@ -1,11 +1,16 @@
 const baseUrl = "https://api.openweathermap.org/";
 const key = "7a7b7c55a138b61d616600efbbb647d3";
 
-form.addEventListener("submit", (e) => { 
+btnSearch.addEventListener("click", () => {  
+  const city = inputCity.value;
+  createCard({ cityValue: city });
+})
+
+form.addEventListener("submit", (e) => {  
   e.preventDefault();
   const city = inputCity.value;
-  createCard({cityValue: city});
-})
+  createCard({ cityValue: city });
+});
 
 const getCoords = (e) => {
   const options = {
@@ -15,7 +20,7 @@ const getCoords = (e) => {
   function success(position) {
     const lat = position.coords.latitude;
     const lon = position.coords.longitude;
-    createCard({lat: lat, lon: lon});
+    createCard({ lat: lat, lon: lon });
   }
 
   function error(err) {
@@ -23,15 +28,23 @@ const getCoords = (e) => {
   }
 
   if (e.target.nodeName === "IMG") {
+    
+    cardGeoData.classList.add("skeleton");
+    cardTemperatureContainer.classList.add("skeleton");
+    cardImageContainer.classList.add("skeleton");
+    infoExtraContainer.classList.add("skeleton");
+
     navigator.geolocation.getCurrentPosition(success, error, options);
   }
 };
 
 const getDataByCity = async (city) => {
-  const response = await fetch(`${baseUrl}data/2.5/weather?q=${city}&lang=es&appid=${key}&units=metric`);
+  const response = await fetch(
+    `${baseUrl}data/2.5/weather?q=${city}&lang=es&appid=${key}&units=metric`
+  );
   const data = await response.json();
   return data;
-}
+};
 
 const getData = async (lat, lon) => {
   const response = await fetch(
@@ -50,7 +63,7 @@ const getGeoData = async (lat, lon) => {
 };
 
 const createExtraInfo = (data) => {
-  infoExtraValuesContainer.innerHTML = "";  
+  infoExtraValuesContainer.innerHTML = "";
 
   const nubosityValue = document.createElement("p");
   const humidityValue = document.createElement("p");
@@ -58,11 +71,11 @@ const createExtraInfo = (data) => {
   const visibilityValue = document.createElement("p");
   const windSpeedValue = document.createElement("p");
 
-  nubosityValue.textContent = `${data.clouds.all}%`
-  humidityValue.textContent = `${data.main.humidity}%`
-  pressureValue.textContent = `${data.main.pressure} hPa`
-  visibilityValue.textContent = `${(data.visibility / 1000)} km`
-  windSpeedValue.textContent = `${ Math.round(data.wind.speed * 3.6)} k/h`
+  nubosityValue.textContent = `${data.clouds.all}%`;
+  humidityValue.textContent = `${data.main.humidity}%`;
+  pressureValue.textContent = `${data.main.pressure} hPa`;
+  visibilityValue.textContent = `${data.visibility / 1000} km`;
+  windSpeedValue.textContent = `${Math.round(data.wind.speed * 3.6)} k/h`;
 
   infoExtraValuesContainer.append(
     nubosityValue,
@@ -73,17 +86,24 @@ const createExtraInfo = (data) => {
   );
 };
 
-const createCard = async ({lat, lon, cityValue}) => {
+const createCard = async ({ lat, lon, cityValue }) => {
   cardGeoData.innerHTML = "";
   cardTemperatureContainer.innerHTML = "";
   cardImageContainer.innerHTML = "";
+  inputCity.value = ""
+  
+  cardGeoData.classList.remove("skeleton");
+  cardTemperatureContainer.classList.remove("skeleton");
+  cardImageContainer.classList.remove("skeleton");
+  infoExtraContainer.classList.remove("skeleton");
+
 
   if (lat) {
     var data = await getData(lat, lon);
-  } else if(cityValue) {
-    var data = await getDataByCity(cityValue)
+  } else if (cityValue) {
+    var data = await getDataByCity(cityValue);
   }
-  var geoData = await getGeoData(data.coord.lat, data.coord.lon);  
+  var geoData = await getGeoData(data.coord.lat, data.coord.lon);
 
   // nodos de cardGeoData
   const city = document.createElement("h1");
@@ -124,5 +144,4 @@ btnGetCoords.addEventListener("click", function (e) {
   getCoords(e);
 });
 
-
-createCard({cityValue: 'new york city'});
+createCard({ cityValue: "new york city" });

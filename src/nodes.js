@@ -11,6 +11,7 @@ const cardTemperatureContainer = $('.card__info--temperature');
 const cardImageContainer = $('.card__image--container');
 
 // nodos de informacion extra
+const infoExtraContainer = $('.infoExtra__data--container')
 const infoExtraValuesContainer = $('.infoExtra__values')
 
 //Buttons
